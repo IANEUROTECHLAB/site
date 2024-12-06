@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MAGIC doc bot</title>
+    <link rel="icon"
+          href="https://img.freepik.com/premium-photo/red-medical-caduceus-symbol-white-background-3d-rendering_476612-15069.jpg"
+          class="rounded-circle user_img_msg">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d75ed78aeb.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        /* Paste your CSS code here */
+        body, html {
+    height: 100%;
+    margin: 0;
+    background-image: url('https://cdn.pixabay.com/photo/2024/02/07/14/53/ai-generated-8559218_1280.jpg'); /* Your image URL */
+    background-size: cover;
+    background-position: center;
+}
+
+.home{
+    height: 100%;
+    margin: 0;
+    background-image: url('https://img.freepik.com/free-photo/view-medicine-bandage-arrangement_23-2149341577.jpg?w=1060&t=st=1712301512~exp=1712302112~hmac=a46f1498db978bec565130bed107dacb0f981979a61dc70f9ce52f62cfe9568d'); /* Your image URL */
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+.chat {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.card {
+    height: 70vh;
+    width: 75vw;
+    border-radius: 25px !important;
+    background-color: rgba(255,255,255,0.9); /* white */
+    margin: auto; /* centering */
+}
+
+.home-card{
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.8), rgba(186, 85, 211, 0.8));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatbot-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.chatbot-container h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Adjust font-family as needed */
+    color: #fff; /* White color */
+}
+
+.chatbot-container h3 {
+    font-size: 24px;
+    color: #ffffffb1;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif; /* Apply special font */
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff !important;
+    text-align: center;
+    text-decoration: none !important;
+    background: linear-gradient(135deg, #FF1493, #C71585); /* Default background */
+    transition: background 0.5s; /* Transition effect for background change */
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #8A2BE2, #4B0082) !important; /* Gradient change on hover */
+    opacity: 0.8;
+}
+
+.button:active {
+    transform: translateY(1px) !important;
+}
+
+.contacts_body {
+    padding:  0.75rem 0 !important;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+.msg_card_body {
+    overflow-y: auto;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    border-bottom: 0 !important;
+}
+
+.card-footer {
+    border-radius: 0 0 15px 15px !important;
+    border-top: 0 !important;
+}
+
+.container {
+    align-content: center;
+}
+
+.search {
+    border-radius: 15px 0 0 15px !important;
+    background-color: rgba(241, 242, 242, 1) !important; /* semi-transparent white */
+    border:0 !important;
+    color: #333 !important; /* dark gray */
+}
+
+.search:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.type_msg {
+    background-color: rgba(255,255,255,0) !important; /* semi-transparent white */
+    color: #333 !important; /* dark gray */
+    height: 60px !important;
+    border: 0px;
+    overflow-y: auto;
+    text-transform: capitalize;
+}
+
+.type_msg:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.attach_btn,
+.send_btn,
+.search_btn {
+    border-radius: 9px 9px 9px 9px !important;
+    height: 60px;
+    background-color: rgba(30, 48, 80, 1) !important; /* semi-transparent white */
+    border: 0 !important;
+    color: #fff !important; /* dark gray */
+    cursor: pointer;
+}
+
+.contacts {
+    list-style: none;
+    padding: 0;
+}
+
+.contacts li {
+    width: 100% !important;
+    padding: 5px 10px;
+    margin-bottom: 15px !important;
+}
+
+.active {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.user_img,
+.user_img_msg {
+    height: 55px;
+    width: 55px;
+    border: 1.5px solid #f5f6fa;
+}
+
+.img_cont,
+.img_cont_msg {
+    position: relative;
+    height: 70px;
+    width: 70px;
+}
+
+.user_info {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.user_info span {
+    font-size: 20px;
+    color: #333;
+}
+
+.user_info p {
+    font-size: 10px;
+    color: rgba(51,51,51,0.6);
+}
+
+.video_cam {
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+.video_cam span {
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.msg_cotainer,
+.msg_cotainer_send {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: #1e3050; /* light blue */
+    padding: 10px;
+    position: relative;
+    color: #fff; /* white */
+}
+
+.msg_cotainer_send {
+    margin-right: 10px;
+    background-color: #0ca678; /* green */
+}
+
+.msg_cotainer span {
+    font-size: 14px; /* Adjust font size for regular text */
+}
+
+.msg_cotainer strong {
+    font-size: 18px; /* Adjust font size for titles or topics */
+    color: #FF1493; /* Adjust color for titles or topics */
+}
+
+.msg_time,
+.msg_time_send {
+    position: absolute;
+    bottom: -15px;
+    color: rgba(0,0,0,0.5);
+    font-size: 10px;
+}
+
+.msg_head {
+    position: relative;
+}
+
+#action_menu_btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #333;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.action_menu {
+    z-index: 1;
+    position: absolute;
+    padding: 15px 0;
+    background-color: rgba(255,255,255,0.5);
+    color: #333;
+    border-radius: 15px;
+    top: 30px;
+    right: 15px;
+    display: none;
+}
+
+.action_menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.action_menu ul li {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+}
+
+.action_menu ul li i {
+    padding-right: 10px;
+}
+
+.action_menu ul li:hover {
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.2);
+}
+
+@media(max-width: 576px) {
+    .contacts_card {
+        margin-bottom: 15px !important;
+    }
+}
+
+
+        /* Add the rest of your CSS styles here */
+    </style>
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+</head>
+
+<body>
+<div class="container-fluid h-100">
+    <div class="row justify-content-center h-100">
+        <div class="card">
+            <div class="card-header msg_head">
+                <div class="d-flex bd-highlight">
+                    <div class="img_cont">
+                        <img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?t=st=1711953478~exp=1711957078~hmac=02ec96e4ef878f0702a696389fada16b95b12e21cbc66b1e1a418f6ad64e9ee3&w=740"
+                             class="rounded-circle user_img">
+                    </div>
+                    <div class="user_info">
+                        <span>MAGIC doc bot</span>
+                        <p>Empowering Your Clients Health Journey</p>
+                    </div>
+                </div>
+            </div>
+            <div id="messageForm" class="card-body msg_card_body" style="overflow-y: auto; height: 400px;">
+
+            </div>
+            <div class="card-footer">
+                <form id="messageArea" class="input-group">
+                    <input type="text" id="text" name="msg" placeholder="Message" autocomplete="off"
+                           class="form-control type_msg" required/>
+                    <div class="input-group-append">
+                        <button type="submit" id="send" class="input-group-text send_btn"><i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    $(document).ready(function () {
+        // Function to initiate conversation
+        $(window).on('load', function () {
+            scrollToBottom();
+            // Get current time
+            const date = new Date();
+            const hour = date.getHours();
+            const minute = date.getMinutes();
+            const str_time = hour + ":" + minute;
+            // Display bot's initial message
+            var initialMessage = "How may I assist you with your medical inquiries or issues?";
+            var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?t=st=1711953478~exp=1711957078~hmac=02ec96e4ef878f0702a696389fada16b95b12e21cbc66b1e1a418f6ad64e9ee3&w=740" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + initialMessage + '<span class="msg_time">' + str_time + '</span></div></div>';
+            $("#messageForm").append($.parseHTML(botHtml)); // Append bot's initial message to conversation
+        });
+
+        // Function to send user message and receive response
+        $("#messageArea").on("submit", function (event) {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Get current time
+            const date = new Date();
+            const hour = date.getHours();
+            const minute = date.getMinutes();
+            const str_time = hour + ":" + minute;
+
+            // Get user input
+            var rawText = $("#text").val();
+
+            // Display user message
+            var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">' + str_time + '</span></div><div class="img_cont_msg"><img src="https://cdn-icons-png.flaticon.com/512/4140/4140038.png" class="rounded-circle user_img_msg"></div></div>';
+            $("#text").val(""); // Clear input field
+            $("#messageForm").append(userHtml);
+            scrollToBottom();// Append user message to conversation
+
+            // Send user message to server and get response
+            $.ajax({
+                data: {msg: rawText},
+                type: "POST",
+                url: "/get",
+                success: function (data) {
+                    // Display bot response
+                    var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?t=st=1711953478~exp=1711957078~hmac=02ec96e4ef878f0702a696389fada16b95b12e21cbc66b1e1a418f6ad64e9ee3&w=740" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
+                    $("#messageForm").append($.parseHTML(botHtml)); // Append bot response to conversation
+                    scrollToBottom(); // Scroll to bottom after appending bot response
+                }
+            });
+        });
+
+        // Function to scroll to the bottom of the chat window
+        function scrollToBottom() {
+            var chatWindow = document.getElementById("messageForm");
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    });
+
+</script> -->
+
+<script>
+    $(document).ready(function () {
+        // Function to initiate conversation
+        $(window).on('load', function () {
+            scrollToBottom();
+            // Get current time
+            const date = new Date();
+            const hour = date.getHours();
+            const minute = date.getMinutes();
+            const str_time = hour + ":" + minute;
+            // Display bot's initial message
+            var initialMessage = "How may I assist you with your medical inquiries or issues?";
+            var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?t=st=1711953478~exp=1711957078~hmac=02ec96e4ef878f0702a696389fada16b95b12e21cbc66b1e1a418f6ad64e9ee3&w=740" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + initialMessage + '<span class="msg_time">' + str_time + '</span></div></div>';
+            $("#messageForm").append($.parseHTML(botHtml)); // Append bot's initial message to conversation
+        });
+        // Function to send user message and receive response
+        $("#messageArea").on("submit", function (event) {
+            // Prevent form submission
+            event.preventDefault();
+            // Get current time
+            const date = new Date();
+            const hour = date.getHours();
+            const minute = date.getMinutes();
+            const str_time = hour + ":" + minute;
+            // Get user input
+            var rawText = $("#text").val();
+            // Display user message
+            var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">' + str_time + '</span></div><div class="img_cont_msg"><img src="https://cdn-icons-png.flaticon.com/512/4140/4140038.png" class="rounded-circle user_img_msg"></div></div>';
+            $("#text").val(""); // Clear input field
+            $("#messageForm").append(userHtml);
+            scrollToBottom();// Append user message to conversation
+            // Send user message to server and get response
+            $.ajax({
+                data: {msg: rawText},
+                type: "POST",
+                url: "/get",
+                success: function (data) {
+                    // Display bot response
+                    var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?t=st=1711953478~exp=1711957078~hmac=02ec96e4ef878f0702a696389fada16b95b12e21cbc66b1e1a418f6ad64e9ee3&w=740" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data.response + '<span class="msg_time">' + str_time + '</span></div></div>';
+                    $("#messageForm").append($.parseHTML(botHtml)); // Append bot response to conversation
+                    scrollToBottom(); // Scroll to bottom after appending bot response
+                }
+            });
+        });
+        // Function to scroll to the bottom of the chat window
+        function scrollToBottom() {
+            var chatWindow = document.getElementById("messageForm");
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    });
+</script>
+
+
+
+</body>
+</html>
